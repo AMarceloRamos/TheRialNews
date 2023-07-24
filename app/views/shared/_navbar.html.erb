@@ -33,28 +33,24 @@
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         <!-- Mostrar un saludo personalizado según la autenticación del usuario -->
-                          <% if user_signed_in? %>
-                            Hola <%= current_user.email %>
-                                <% else %>
-                        ¡Hola! registrate o conectate
-                                <% end %>
-                        <%#  <% if user_signed_in? %>
-                        <%#    <% if current_user.profile_photo.attached? %>
-                        <%#        <!-- Si tiene una foto de perfil, mostramos la imagen -->
+                        
+                         <% if user_signed_in? %>
+                           <% if current_user.profile_photo.attached? %>
+                               <!-- Si tiene una foto de perfil, mostramos la imagen -->
                                 <%= image_tag current_user.profile_photo %>
-                        <%#    <% else %>
+                           <% else %>
                                 <!-- Si no tiene una foto de perfil, mostramos la imagen predeterminada -->
-                        <%#        <%= image_tag 'default_profile_photo.png', width:"40px", class:"rounded mx-auto d-block rounded-circle" %>
-                        <%#  <% end %> 
+                               <%= image_tag 'default_profile_photo.png', width:"40px", class:"rounded mx-auto d-block rounded-circle" %>
+                      <% end %> 
 
-                           <%# <% if current_user.name %>
-                        <%#   <% if current_user.email %>
-                           <%#     Hola <%= current_user.name %>
-                            <%#<% else %>
-                        <%#        Hola <%= current_user.email %>
-                           <%# <% end %>
-                        <%# <% else %>
-                        <%#     ¡Hola! Regístrate o conéctate
+                        <% if current_user.name %>
+                          <% if current_user.email %>
+                            Hola <%= current_user.name %>
+                            % else %>
+                               Hola <%= current_user.email %>
+                        <% end %>
+                        <% else %>
+                            ¡Hola! Regístrate o conéctate
                         <% end %>
                       
                     </a>
