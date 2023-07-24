@@ -72,3 +72,9 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+
+gem "bootstrap", "~> 5.2"
+
+gem "jquery-rails", "~> 4.6"
+
+gem "popper", "~> 0.5.3"

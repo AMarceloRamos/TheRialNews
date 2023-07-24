@@ -1,0 +1,95 @@
+<nav class="navbar navbar-expand-lg bg-light">
+    <!-- La barra de navegación con un fondo claro -->
+
+    <div class="container-fluid">
+        <!-- Contenedor para albergar los elementos de navegación -->
+
+        <!-- Logo o enlace de la marca que lleva a la página raíz del sitio web -->
+        <%= link_to 'TheRialNews', root_path, class: 'navbar-brand' %>
+
+        <!-- Botón para alternar el menú de navegación responsive y colapsable -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            <!-- El icono del botón -->
+        </button>
+
+        <!-- Elementos del menú de navegación colapsable -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!-- Elementos del menú alineados a la izquierda -->
+                <li class="nav-item">
+                    <!-- Enlace a la página de 'Posts' utilizando 'posts_path' -->
+                    <%# <%= link_to 'Posts', posts_path, class: 'nav-link' %> 
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <!-- Elementos del menú alineados a la derecha -->
+
+                <li class="nav-item dropdown">
+                    <!-- Enlace del menú desplegable -->
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <!-- Mostrar un saludo personalizado según la autenticación del usuario -->
+                          <% if user_signed_in? %>
+                            Hola <%= current_user.email %>
+                                <% else %>
+                        ¡Hola! registrate o conectate
+                                <% end %>
+                        <%#  <% if user_signed_in? %>
+                        <%#    <% if current_user.profile_photo.attached? %>
+                        <%#        <!-- Si tiene una foto de perfil, mostramos la imagen -->
+                                <%= image_tag current_user.profile_photo %>
+                        <%#    <% else %>
+                                <!-- Si no tiene una foto de perfil, mostramos la imagen predeterminada -->
+                        <%#        <%= image_tag 'default_profile_photo.png', width:"40px", class:"rounded mx-auto d-block rounded-circle" %>
+                        <%#  <% end %> 
+
+                           <%# <% if current_user.name %>
+                        <%#   <% if current_user.email %>
+                           <%#     Hola <%= current_user.name %>
+                            <%#<% else %>
+                        <%#        Hola <%= current_user.email %>
+                           <%# <% end %>
+                        <%# <% else %>
+                        <%#     ¡Hola! Regístrate o conéctate
+                        <% end %>
+                      
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <!-- Contenido del menú desplegable -->
+                        <% if user_signed_in? %>
+                            <li>
+                                <!-- Botón para cerrar sesión con método 'delete' -->
+                                <%= button_to 'Cerrar sesión', destroy_user_session_path, class: 'dropdown-item',
+                                    method: :delete %>
+                            </li>
+                            <li>
+                                <!-- Enlace para editar el perfil del usuario -->
+                                <%= link_to 'Editar Perfil', edit_user_registration_path, class: 'dropdown-item' %>
+                            </li>
+                        <% else %>
+                            <li>
+                                <!-- Enlace para iniciar sesión -->
+                                <%= link_to 'Iniciar sesión', new_user_session_path, class: 'dropdown-item' %>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                                <!-- Línea divisora -->
+                            </li>
+                            <li>
+                                <!-- Enlace para registrarse -->
+                                <%= link_to 'Registro', new_user_registration_path, class: 'dropdown-item' %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
