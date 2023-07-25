@@ -2,23 +2,34 @@
 
 <%= render @publication %>
 <div>
- <%= link_to "Back to publications", publications_path %>
+ 
+<div class="container">
  <% if user_signed_in?%>
   <%if current_user.id == @publication.user_id %>
-  <%= link_to "Edit this publication", edit_publication_path(@publication) %> |
-  <%= button_to "Destroy this publication", @publication, method: :delete %>
+  <%= link_to edit_publication_path(@publication), class: "btn  d-inline" do %>
+  Editar<i class="fa-solid fa-pencil" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom"></i>
+<% end %>
+
+ <%= button_to @publication, method: :delete, class: "btn d-inline" do %>
+  eliminar <i class="fa-solid fa-trash"></i>
+<% end %>
+
   <% end%>
   <% end%>
 </div>
 
+<div class="container">
 <!-- Mostrar comentarios existentes -->
 <h2>Comentarios:</h2>
 <% @publication.comments.each do |comment| %>
+
   <% if comment.user&.profile_picture&.attached? %>
     <%= image_tag comment.user.profile_picture, width: "40px" %>
   <% else %>
     <%= image_tag "default_profile_photo.png", class: "profile-photo", width: "75px" %>
   <% end %>
+
+ 
 <% if comment.user&.name %>
     <p><strong><%= comment.user.name %></strong>: <%= comment.content %></p>
     <p class="time-ago"><%= time_ago_in_words(comment.created_at) %> ago</p>
@@ -29,12 +40,18 @@
   <% end %>
 <% end %>
 
+ <div class="card mb-3 w-50 h-25" style="">
 <!-- Formulario para agregar un nuevo comentario -->
 <%= form_with(model: [@publication, @publication.comments.build]) do |form| %>
-  <%= form.submit "Agregar comentario" %>
+  
   <div class="field">
-    <%= form.text_area :content %>
-  </div> 
+    <%= form.text_area :content , class:"form-control border-0 position-relative" , placeholder:"add new comments..."%>
+  </div>
+
+  <%= form.submit "Comentar", class: "btn btn-danger d-inline" %>
 <% end %>
+</div>
+
+<%= link_to "Back to publications", publications_path %>
 
 

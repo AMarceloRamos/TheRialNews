@@ -33,7 +33,6 @@
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         <!-- Mostrar un saludo personalizado según la autenticación del usuario -->
-                        
                         <% if user_signed_in? %>
                              <% if current_user.profile_picture.attached? %>
                                 <!-- Si tiene una foto de perfil, mostramos la imagen -->
@@ -42,13 +41,14 @@
                                 <!-- Si no tiene una foto de perfil, mostramos la imagen predeterminada -->
                                 <%= image_tag 'default_profile_photo.png', width: "40px", class: "rounded mx-auto d-block rounded-circle" %>
                             <% end %>
+        
                                 <% if current_user.name %>
                                 Hola <%= current_user.name  %>
                                 <% else %>
                                  Hola <%= current_user.email  %>
                                 <% end %>
                             <% else %>
-                               ¡Hola! Regístrate o conéctate 
+                               ¡Hola! Regístrate o conéctate
                         <% end%>                
                     </a>
 

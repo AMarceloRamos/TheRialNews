@@ -14,6 +14,16 @@ body {
   color: #333;
 }
 
+.paragraph-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.paragraph {
+  flex: 1;
+  margin: 0; /* Elimina el margen entre los párrafos */
+}
+
 h1,
 h2,
 h3,
