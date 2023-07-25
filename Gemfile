@@ -78,3 +78,5 @@ gem "bootstrap", "~> 5.2"
 gem "jquery-rails", "~> 4.6"
 
 gem "popper", "~> 0.5.3"
+
+gem "cancancan", "~> 3.5"

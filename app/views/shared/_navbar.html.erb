@@ -20,8 +20,8 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <!-- Elementos del menú alineados a la izquierda -->
                 <li class="nav-item">
-                    <!-- Enlace a la página de 'Posts' utilizando 'posts_path' -->
-                    <%# <%= link_to 'Posts', posts_path, class: 'nav-link' %> 
+                    <!-- Enlace a la página de 'Publications' utilizando 'Publications_path' -->
+                     <%= link_to 'Publications', publications_path, class: 'nav-link' %> 
                 </li>
             </ul>
 
@@ -34,25 +34,22 @@
                         aria-expanded="false">
                         <!-- Mostrar un saludo personalizado según la autenticación del usuario -->
                         
-                         <% if user_signed_in? %>
-                           <% if current_user.profile_photo.attached? %>
-                               <!-- Si tiene una foto de perfil, mostramos la imagen -->
-                                <%= image_tag current_user.profile_photo %>
-                           <% else %>
-                                <!-- Si no tiene una foto de perfil, mostramos la imagen predeterminada -->
-                               <%= image_tag 'default_profile_photo.png', width:"40px", class:"rounded mx-auto d-block rounded-circle" %>
-                      <% end %> 
-
-                        <% if current_user.name %>
-                          <% if current_user.email %>
-                            Hola <%= current_user.name %>
+                        <% if user_signed_in? %>
+                             <% if current_user.profile_picture.attached? %>
+                                <!-- Si tiene una foto de perfil, mostramos la imagen -->
+                            <%= image_tag current_user.profile_picture, width: "40px", class: "rounded mx-auto d-block rounded-circle"  %>
                             <% else %>
-                               Hola <%= current_user.email %>
-                        <% end %>
-                        <% else %>
-                            ¡Hola! Regístrate o conéctate
-                        <% end %>
-                      
+                                <!-- Si no tiene una foto de perfil, mostramos la imagen predeterminada -->
+                                <%= image_tag 'default_profile_photo.png', width: "40px", class: "rounded mx-auto d-block rounded-circle" %>
+                            <% end %>
+                                <% if current_user.name %>
+                                Hola <%= current_user.name  %>
+                                <% else %>
+                                 Hola <%= current_user.email  %>
+                                <% end %>
+                            <% else %>
+                               ¡Hola! Regístrate o conéctate 
+                        <% end%>                
                     </a>
 
                     <ul class="dropdown-menu">

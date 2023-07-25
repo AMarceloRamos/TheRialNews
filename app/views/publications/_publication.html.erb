@@ -1,0 +1,30 @@
+<div id="<%= dom_id publication %>">
+
+  <p>
+   <% if @user && @user.profile_picture.attached? %>
+     <%= image_tag current_user.profile_picture, width: "50px" %>
+      <% else%>
+      <%= image_tag "default_profile_photo.png", width:"50px"  %>
+   <% end %>
+  <% if @user && @user.name.attached? %>
+      <%= current_user.name  %>
+      <% else%>
+      <h5><span>Anonymous user</span></h5>
+   <% end %>
+  </p>
+  <p>
+   <% if @publication && @publication.image.attached? %>
+      <%= image_tag url_for(@publication.image) %>
+    <% end %>
+  </p>
+  <p>
+    <strong>Title:</strong>
+    <%= publication.title %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= publication.description %>
+  </p>
+
+</div>
