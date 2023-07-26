@@ -1,14 +1,26 @@
-<p style="color: green"><%= notice %></p>
+<!-- Mostrar el mensaje de aviso en verde -->
+<p style="color: green;"><%= notice %></p>
 
+
+<br/>
+
+<!-- Título de la sección -->
 <h1>Publications</h1>
-<br>
-<div id="publications">
-  <% @publications.each do |publication| %>
-    <%= render publication %>
-    <p>
-      <%= link_to "Show this publication", publication %>
-    </p>
-  <% end %>
-</div>
+<br/>
 
-<%= link_to "New publication", new_publication_path ,  class: "btn btn-primary" %>
+<!-- Contenedor para listar las publicaciones -->
+<div class="container">
+  <div id="publications">
+    <!-- Iterar a través de todas las publicaciones -->
+    <% @publications.each do |publication| %>
+      <!-- Renderizar una vista parcial para cada publicación -->
+      <%= render publication %>
+      <br/>
+      <p>
+        <!-- Enlace para mostrar los detalles de cada publicación -->
+        <%= link_to "Show this publication", publication %>
+      </p>
+      <br/>
+    <% end %>
+  </div>
+</div>

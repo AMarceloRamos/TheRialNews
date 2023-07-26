@@ -1,27 +1,37 @@
+<br />
+<!-- Título de la página -->
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
+<!-- Formulario para editar el perfil -->
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <!-- Renderizar mensajes de error si existen -->
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-  <%= f.label :profile_picture %>
-  <%= f.file_field :profile_picture %>
-  </div>
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <!-- Campo para cambiar la imagen de perfil -->
+  <div class="field mx-2 my-3">
+    <%= f.label :profile_picture %>
+    <%= f.file_field :profile_picture %>
   </div>
 
-  <div class="field">
+  <!-- Campo para cambiar el nombre -->
+  <div class="field mx-2 my-3">
+    <%= f.label :name %><br />
+    <%= f.text_field :name,autofocus: true %>
+  </div>
+
+  <!-- Campo para cambiar el correo electrónico -->
+  <div class="field mx-2 my-3">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <!-- Mensaje para confirmación de correo -->
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div class="field">
+  <!-- Campo para cambiar la contraseña -->
+  <div class="field mx-2 my-3">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
@@ -30,23 +40,31 @@
     <% end %>
   </div>
 
-  <div class="field">
+  <!-- Campo para confirmar la contraseña -->
+  <div class="field mx-2 my-3">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
+  <!-- Campo para ingresar la contraseña actual -->
+  <div class="field mx-2 my-3">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
+  <!-- Botón para actualizar el perfil -->
+  <div class="actions mx-2 my-3">
+    <%= f.submit "Update", class: "btn btn-primary" %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<!-- Título para cancelar la cuenta -->
+<h5 class="mx-3">or</h5>
 
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+<!-- Botón para cancelar la cuenta -->
+<div>
+  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
+</div>
+<!-- Enlace para volver atrás -->
+<%= link_to "Back", :back, class: "btn " %>
 
-<%= link_to "Back", :back %>

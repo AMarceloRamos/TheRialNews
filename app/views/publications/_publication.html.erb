@@ -1,37 +1,40 @@
 <div id="<%= dom_id publication %>">
-
- <% if @user && @user.profile_picture.attached? %>
-     <%= image_tag current_user.profile_picture, width: "50px", class:"d-inline"%>
-      <% else%>
-      <%= image_tag "default_profile_photo.png", width:"50px", class:"d-inline" %>
-   <% end %>
-   <div class="paragraph-container d-inline">
-  <p class="h5 d-inline paragraph">
-    <strong><%= publication.title %></strong>
-  </p>
-  <p class="d-inline paragraph">
-   
-  <% if @user && @user.name.attached? %>
-     by<span><%= current_user.name  %></span>
-      <% else%>
-      by<span>Anonymous user</span>
-   <% end %>
-  </p>
-  </div>
-
-  <div class="card mb-3 w-50 h-25" style="">
-  <p>
-   <% if @publication && @publication.image.attached? %>
-      <%= image_tag url_for(@publication.image) , class:"card-img-top" ,alt:"..." %>
+  <div class="container">
+    <% if @user && @user.profile_picture.attached? %>
+      <%= image_tag current_user.profile_picture, width: "50px", class: "d-inline" %>
+    <% else %>
+      <%= image_tag "default_profile_photo.png", width: "50px", class: "d-inline" %>
     <% end %>
-   
-</div>
-  </p>
- </div>
+    <div class="paragraph-container d-inline">
+      <!-- Título de la publicación -->
+      <p class="h5 d-inline paragraph">
+        <strong><%= publication.title %></strong>
+      </p>
+      <!-- Nombre del autor de la publicación -->
+      <p class="d-inline paragraph">
+        <% if @user && @user.name.attached? %>
+          by <span><%= current_user.name %></span>
+        <% else %>
+          by <span>Anonymous user</span>
+        <% end %>
+      </p>
+    <br/>
+
+    </div>
+    <br/>
+
+    <!-- Imagen de la publicación en una tarjeta -->
+    <div class="card mb-3 w-50 h-25">
+      <p>
+        <% if @publication && @publication.image.attached? %>
+          <%= image_tag url_for(@publication.image), class: "card-img-top", alt: "..." %>
+        <% end %>
+      </p>
+    </div>
+
+    <!-- Descripción de la publicación -->
     <strong>Description:</strong>
     <%= publication.description %>
-  </p>
-
-
+  </div>
 </div>
-</div>
+

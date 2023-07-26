@@ -1,57 +1,59 @@
-<p style="color: green"><%= notice %></p>
+<!-- Mostrar mensaje de aviso en color verde -->
+<p style="color: green;"><%= notice %></p>
 
+<!-- Renderizar la vista de la publicación -->
 <%= render @publication %>
-<div>
- 
-<div class="container">
- <% if user_signed_in?%>
-  <%if current_user.id == @publication.user_id %>
-  <%= link_to edit_publication_path(@publication), class: "btn  d-inline" do %>
-  Editar<i class="fa-solid fa-pencil" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom"></i>
-<% end %>
 
- <%= button_to @publication, method: :delete, class: "btn d-inline" do %>
-  eliminar <i class="fa-solid fa-trash"></i>
-<% end %>
+<!-- Contenedor para botones de edición y eliminación si el usuario está logueado -->
+<div class="container d-inline">
+  <% if user_signed_in? %>
+    <% if current_user.id == @publication.user_id %>
+      <!-- Botón para editar la publicación -->
+      <%= link_to edit_publication_path(@publication), class: "btn d-inline" do %>
+        <i class="fa-solid fa-pencil d-inline"></i>
+      <% end %>
 
-  <% end%>
-  <% end%>
+      <!-- Botón para eliminar la publicación -->
+      <%= button_to @publication, method: :delete, class: "btn d-inline" do %>
+        <i class="fa-solid fa-trash d-inline"></i>
+      <% end %>
+    <% end %>
+  <% end %>
 </div>
 
 <div class="container">
-<!-- Mostrar comentarios existentes -->
-<h2>Comentarios:</h2>
-<% @publication.comments.each do |comment| %>
+  <!-- Mostrar comentarios existentes -->
+  <h2>Comentarios:</h2>
+  <% @publication.comments.each do |comment| %>
+    <% if comment.user&.profile_picture&.attached? %>
+      <%= image_tag comment.user.profile_picture, width: "40px" %>
+    <% else %>
+      <%= image_tag "default_profile_photo.png", class: "profile-photo", width: "75px" %>
+    <% end %>
 
-  <% if comment.user&.profile_picture&.attached? %>
-    <%= image_tag comment.user.profile_picture, width: "40px" %>
-  <% else %>
-    <%= image_tag "default_profile_photo.png", class: "profile-photo", width: "75px" %>
+    <% if comment.user&.name %>
+      <!-- Mostrar el nombre de usuario y el contenido del comentario -->
+      <p><strong><%= comment.user.name %></strong>: <%= comment.content %></p>
+      <p class="time-ago"><%= time_ago_in_words(comment.created_at) %> ago</p>
+    <% else %>
+      <!-- Mostrar un comentario sin usuario o sin nombre de usuario -->
+      <p><strong>Usuario Anónimo</strong>: <%= comment.content %></p>
+      <p class="time-ago"><%= time_ago_in_words(comment.created_at) %> ago</p>
+    <% end %>
   <% end %>
 
- 
-<% if comment.user&.name %>
-    <p><strong><%= comment.user.name %></strong>: <%= comment.content %></p>
-    <p class="time-ago"><%= time_ago_in_words(comment.created_at) %> ago</p>
-  <% else %>
-    <!-- Mostrar un comentario sin usuario o sin nombre de usuario -->
-    <p><strong>Usuario Anónimo</strong>: <%= comment.content %></p>
-    <p class="time-ago"><%= time_ago_in_words(comment.created_at) %> ago</p>
-  <% end %>
-<% end %>
+  <!-- Formulario para agregar un nuevo comentario -->
+  <div class="card mb-3 w-50 h-25" style="">
+    <%= form_with(model: [@publication, @publication.comments.build]) do |form| %>
+      <div class="field">
+        <%= form.text_area :content, class: "form-control border-0 position-relative", placeholder: "Agregar nuevos comentarios..." %>
+      </div>
 
- <div class="card mb-3 w-50 h-25" style="">
-<!-- Formulario para agregar un nuevo comentario -->
-<%= form_with(model: [@publication, @publication.comments.build]) do |form| %>
-  
-  <div class="field">
-    <%= form.text_area :content , class:"form-control border-0 position-relative" , placeholder:"add new comments..."%>
+      <%= form.submit "Comentar", class: "btn btn-danger d-inline" %>
+    <% end %>
   </div>
 
-  <%= form.submit "Comentar", class: "btn btn-danger d-inline" %>
-<% end %>
+  <!-- Enlace para volver a la lista de publicaciones -->
+  <%= link_to "Back to publications", publications_path %>
 </div>
-
-<%= link_to "Back to publications", publications_path %>
-
 

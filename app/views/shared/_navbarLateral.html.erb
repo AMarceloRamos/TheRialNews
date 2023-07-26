@@ -1,0 +1,43 @@
+<nav class="navbar bg-light ">
+  <div class="container-fluid d-block">
+  <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 d-block">
+  <li>
+   <% if @user && @user.profile_picture.attached? %>
+      <%= image_tag current_user.profile_picture, width: "20px", class: 'dropdown-item'%>
+    <% else %>
+      <%= image_tag "default_profile_photo.png", class: 'dropdown-item', width: "20px"  %>
+    <% end %>
+      <!-- Enlace para editar el perfil del usuario -->
+     <%= link_to 'Editar Perfil', edit_user_registration_path, class: 'dropdown-item' %>
+    </li>
+    
+      <li class="nav-item">
+        <a class="nav-link active d-inline" aria-current="page" href="/tweets"><i class="fa-solid fa-house d-inline">
+          </i>Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link d-inline" href="#"> <i class="fa-solid fa-magnifying-glass d-inline"> </i>Explorer</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link d-inline" href="#"><i class="fa-regular fa-bell d-inline"> </i>Notifications</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link d-inline" href="#"><i class="fa-regular fa-envelope d-inline"> </i>Messages</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link d-inline" href="#"><i class="fa-regular fa-rectangle-list d-inline"> </i>List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link d-inline" href="#"><i class="fa-regular fa-badge-check d-inline"> </i>Verified</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link d-inline" href="#"><i class="fa-regular fa-user d-inline"> </i> Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link d-inline" href="#"><i class="fa-regular fa-cowbell-circle-plus d-inline"></i>More</a>
+      </li>
+      
+    </ul>
+
+  </div>
+</nav>

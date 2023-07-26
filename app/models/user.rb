@@ -5,6 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :publications 
   has_one_attached :profile_picture
-
+  validates :email, presence: true
 
 end

@@ -49,9 +49,8 @@
                                 <% end %>
                             <% else %>
                                ¡Hola! Regístrate o conéctate
-                        <% end%>                
+                        <% end%>               
                     </a>
-
                     <ul class="dropdown-menu">
                         <!-- Contenido del menú desplegable -->
                         <% if user_signed_in? %>
@@ -78,10 +77,12 @@
                                 <%= link_to 'Registro', new_user_registration_path, class: 'dropdown-item' %>
                             </li>
                         <% end %>
+
                     </ul>
                 </li>
             </ul>
-
+            <!-- Enlace para crear una nueva publicación -->
+            <%= link_to "New publication", new_publication_path, class: "btn"%> 
         </div>
     </div>
 </nav>
