@@ -5,22 +5,21 @@
 <%= render @publication %>
 
 <!-- Contenedor para botones de edición y eliminación si el usuario está logueado -->
-<div class="container d-inline">
+<div class="container">
   <% if user_signed_in? %>
     <% if current_user.id == @publication.user_id %>
       <!-- Botón para editar la publicación -->
-      <%= link_to edit_publication_path(@publication), class: "btn d-inline" do %>
-        <i class="fa-solid fa-pencil d-inline"></i>
+      <%= link_to edit_publication_path(@publication), class: "btn d-inline btn-warning" do %>
+        Edit<i class="fa-solid fa-pencil "></i>
       <% end %>
-
       <!-- Botón para eliminar la publicación -->
-      <%= button_to @publication, method: :delete, class: "btn d-inline" do %>
-        <i class="fa-solid fa-trash d-inline"></i>
+      <%= link_to @publication, method: :delete, class: "btn d-inline btn-danger" do %>
+        Delete<i class="fa-solid fa-trash"></i>
       <% end %>
     <% end %>
   <% end %>
 </div>
-
+<br/>
 <div class="container">
   <!-- Mostrar comentarios existentes -->
   <h2>Comentarios:</h2>
@@ -43,15 +42,16 @@
   <% end %>
 
   <!-- Formulario para agregar un nuevo comentario -->
-  <div class="card mb-3 w-50 h-25" style="">
+  
     <%= form_with(model: [@publication, @publication.comments.build]) do |form| %>
       <div class="field">
-        <%= form.text_area :content, class: "form-control border-0 position-relative", placeholder: "Agregar nuevos comentarios..." %>
+        <%= form.text_area :content, class: "form-control w-50", placeholder: "Agregar nuevos comentarios..." %>
       </div>
-
-      <%= form.submit "Comentar", class: "btn btn-danger d-inline" %>
+      <br/>
+      <%= form.submit "Comentar", class: "btn btn-primary" %>
     <% end %>
-  </div>
+    
+ 
 
   <!-- Enlace para volver a la lista de publicaciones -->
   <%= link_to "Back to publications", publications_path %>

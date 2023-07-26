@@ -16,18 +16,18 @@
     <%= form.label :image , style: "display: block"%>
     <%= form.file_field :image, accept: 'image/png, image/jpeg, image/gif' %>
   </div>
-
+<br/>
   <div>
     <%= form.label :title, style: "display: block" %>
     <%= form.text_field :title %>
   </div>
-
+<br/>
   <div>
     <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description , class: "form-control w-50"%>
   </div>
-
+<br/>
   <div>
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-primary" %>
   </div>
 <% end %>

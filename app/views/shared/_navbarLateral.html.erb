@@ -2,17 +2,19 @@
   <div class="container-fluid d-block">
   <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 d-block">
   <li>
-   <% if @user && @user.profile_picture.attached? %>
-      <%= image_tag current_user.profile_picture, width: "20px", class: 'dropdown-item'%>
-    <% else %>
-      <%= image_tag "default_profile_photo.png", class: 'dropdown-item', width: "20px"  %>
-    <% end %>
-      <!-- Enlace para editar el perfil del usuario -->
-     <%= link_to 'Editar Perfil', edit_user_registration_path, class: 'dropdown-item' %>
+  <div class="container">
+   <h6>TheRialNews</h6>
+<br />
+<p > “TheRialNews” es un sitio de noticias
+    satírica que informa a sus usuarios de actualidad. Buscamos que la plataforma sea
+    un lugar abierto, donde la libertad de expresión sea respetada hasta que afecta la libertad de otro.</p>
+
+<p >Esperemos que te informes y pases un rato agradable</p>
+     </div>
     </li>
     
       <li class="nav-item">
-        <a class="nav-link active d-inline" aria-current="page" href="/tweets"><i class="fa-solid fa-house d-inline">
+        <a class="nav-link active d-inline" aria-current="page" href="/home"><i class="fa-solid fa-house d-inline">
           </i>Home</a>
       </li>
       <li class="nav-item">
